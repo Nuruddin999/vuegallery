@@ -1,17 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import photosModule from './photosModule'
 
 Vue.use(Vuex)
-
 export default new Vuex.Store({
-    state: {
-        count: 0
-    },
-    getters:{},
-    mutations: {
-        increment(state) {
-            state.count++
-        }
-    },
-    actions:{}
+modules:{
+    photos:photosModule
+}
 })
