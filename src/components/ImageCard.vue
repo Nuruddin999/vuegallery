@@ -3,7 +3,7 @@
     <div class="img-container" @mouseover="mouseOver" @mouseleave="mouseOut">
       <img :src="url" />
       <router-link :to="`/${id}`">
-        <v-btn v-if="currentId === id" class="btn">Подробнее</v-btn>
+        <v-btn v-if="currentId === url" class="btn">Подробнее</v-btn>
       </router-link>
     </div>
   </div>
@@ -21,7 +21,7 @@ export default {
     url: { type: String },
     thumbUrl: { type: String },
     title: { type: String },
-    currentId: { type: [Number, Boolean] },
+    currentId: { type: String },
   },
   methods: {
     mouseOver: function () {
@@ -42,7 +42,6 @@ export default {
 .img-container {
   position: relative;
   width: 100%;
-  height: 300px;
 }
 img {
   width: 100%;
@@ -50,8 +49,8 @@ img {
 .btn {
   position: absolute;
   height: 20%;
-  width: 40%;
+  width: 80%;
   top: 40%;
-  left: 30%;
+  left: 10%;
 }
 </style>

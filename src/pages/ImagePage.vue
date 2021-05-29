@@ -1,7 +1,13 @@
 
 <template >
   <div>
-    <div class="picture-wrapper">
+    <v-progress-circular
+      v-if="isloading"
+      indeterminate
+      color="purple"
+      class="mt-16"
+    ></v-progress-circular>
+    <div v-else class="picture-wrapper">
       <h5>{{ getPhoto.title }}</h5>
       <span>id: {{ getPhoto.id }} </span>
       <img :src="getPhoto.url" />
@@ -12,23 +18,21 @@
 import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
-    return {};
+    return {
+      isloading: false,
+    };
   },
 
   methods: {
     ...mapActions(["loadPhotoById"]),
-    showButton(index) {
-      this.currentItem = index + 1;
-      console.log(index);
-    },
   },
   computed: {
     ...mapGetters(["getPhoto"]),
   },
   async created() {
-    // this.photos = await this.$api.photos.getAll();
-    // console.log(JSON.stringify(this.photos));
+    this.isloading = true;
     await this.loadPhotoById(this.$route.params.id);
+    this.isloading = false;
   },
 };
 </script>
@@ -38,7 +42,7 @@ export default {
   max-width: 720px;
   grid-template-columns: repeat(9, 1fr);
   grid-template-rows: 40px 40px 40px 40px;
-  margin: 3em auto 0;
+  margin: 100px auto 0;
   border: 1px solid grey;
   border-radius: 0.5em;
   padding: 0.2em;

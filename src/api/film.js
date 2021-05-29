@@ -5,9 +5,13 @@ export default function (instance) {
         },
         async getAll() {
             let response = await instance.get("photos?_limit=24")
-            let photos = response.data.map((photo, index) => ({ ...photo, category: index % 6 + 1 }))
+            let photos = response.data.map((photo, index) => ({ ...photo, category: index % 4 + 1 }))
             let categories = photos.map(photo => photo.category).filter((val, index, array) => array.indexOf(val) === index)
-            return { photos, categories }
+            let groupedPhotos = categories.map(category => ({
+                category,
+                photos: photos.filter(photo => photo.category === category)
+            }))
+            return { photos: groupedPhotos, categories }
         }
     }
 }

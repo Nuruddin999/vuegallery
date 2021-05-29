@@ -1,9 +1,12 @@
 <template>
-  <div>
-    <v-app-bar color="purple"  fixed>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+  <v-app>
+    <v-app-bar color="purple" fixed>
+      <v-app-bar-nav-icon
+        class="white--text"
+        @click.stop="drawer = !drawer"
+      ></v-app-bar-nav-icon>
 
-      <v-toolbar-title>Gallery</v-toolbar-title>
+      <v-toolbar-title class="white--text">Галерeя</v-toolbar-title>
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" absolute bottom temporary>
       <v-list nav dense>
@@ -13,27 +16,27 @@
         >
           <v-list-item>
             <v-list-item-title>
-              <router-link :to="{ name: 'about' }">About me</router-link>
+              <router-link to="/" class="text-decoration-none"
+                >Галерея</router-link
+              >
             </v-list-item-title>
           </v-list-item>
 
           <v-list-item>
-            <router-link :to="{ path: '/' }">Home</router-link>
+            <v-list-item-title>
+              <router-link to="/about" class="text-decoration-none"
+                >Обо мне</router-link
+              >
+            </v-list-item-title>
           </v-list-item>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
-    <router-view></router-view>
-  </div>
+    <v-main>
+      <router-view key="$route.fullPath"></router-view>
+    </v-main>
+  </v-app>
 </template>
-   <!-- <header>
-      <nav>
-        <div>
-          <router-link :to="{ name: 'about' }">About me</router-link>
-          <router-link :to="{ path: '/' }">Home</router-link>
-        </div>
-      </nav>
-    </header> -->
 <script>
 export default {
   name: "App",
@@ -44,9 +47,6 @@ export default {
     };
   },
   components: {},
-  watch: {
-    $route: "initService",
-  },
 };
 </script>
 
@@ -57,6 +57,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  overflow: hidden;
 }
 header {
   width: 100%;
