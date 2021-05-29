@@ -23,7 +23,7 @@ export default {
   },
   components: { imageComp },
   computed: {
-    ...mapGetters(["getPhotos"]),
+    ...mapGetters(["getPhotos", "getCategories"]),
   },
   methods: {
     ...mapActions(["loadPhotos"]),

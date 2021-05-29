@@ -1,33 +1,32 @@
 <template>
-  <div id="app">
-    <v-row>
-      <v-col
-        v-for="(bar, i) in bars"
-        :key="i"
-        cols="12"
-        sm="12"
-        md="6"
-        class="my-4"
-      >
-        <v-card color="grey lighten-4" flat height="200px">
-          <v-toolbar :color="bar.class" :dark="bar.dark">
-            <v-app-bar-nav-icon></v-app-bar-nav-icon>
-            <v-toolbar-title>Title</v-toolbar-title>
-            <v-spacer></v-spacer>
-            <v-btn icon>
-              <v-icon>mdi-magnify</v-icon>
-            </v-btn>
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
-            </v-btn>
-            <v-btn icon>
-              <v-icon>mdi-dots-vertical</v-icon>
-            </v-btn>
-          </v-toolbar>
-        </v-card>
-      </v-col>
-    </v-row>
-    <!-- <header>
+  <div>
+    <v-app-bar color="purple"  fixed>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+
+      <v-toolbar-title>Gallery</v-toolbar-title>
+    </v-app-bar>
+    <v-navigation-drawer v-model="drawer" absolute bottom temporary>
+      <v-list nav dense>
+        <v-list-item-group
+          v-model="group"
+          active-class="deep-purple--text text--accent-4"
+        >
+          <v-list-item>
+            <v-list-item-title>
+              <router-link :to="{ name: 'about' }">About me</router-link>
+            </v-list-item-title>
+          </v-list-item>
+
+          <v-list-item>
+            <router-link :to="{ path: '/' }">Home</router-link>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
+    <router-view></router-view>
+  </div>
+</template>
+   <!-- <header>
       <nav>
         <div>
           <router-link :to="{ name: 'about' }">About me</router-link>
@@ -35,21 +34,13 @@
         </div>
       </nav>
     </header> -->
-    <router-view></router-view>
-  </div>
-</template>
-
 <script>
 export default {
   name: "App",
   data() {
     return {
-      bars: [
-        { class: "" },
-        { class: "", dark: true },
-        { class: "primary", dark: true },
-        { class: "elevation-0" },
-      ],
+      drawer: false,
+      group: null,
     };
   },
   components: {},

@@ -1,9 +1,11 @@
 <template >
-  <div class="img-container" @mouseover="mouseOver" @mouseleave="mouseOut">
-    <img :src="url" />
-    <router-link :to="`/${id}`">
-      <button v-if="currentId === id" class="btn">Подробнее</button>
-    </router-link>
+  <div>
+    <div class="img-container" @mouseover="mouseOver" @mouseleave="mouseOut">
+      <img :src="url" />
+      <router-link :to="`/${id}`">
+        <v-btn v-if="currentId === id" class="btn">Подробнее</v-btn>
+      </router-link>
+    </div>
   </div>
 </template>
 <script>
