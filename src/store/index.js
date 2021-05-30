@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import photosModule from './photosModule'
+import userModule from './userModule'
 
 Vue.use(Vuex)
 export default new Vuex.Store({
-modules:{
-    photos:photosModule
-}
+    modules: {
+        photos: photosModule,
+        user: userModule
+    }
 })

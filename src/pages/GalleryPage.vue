@@ -28,6 +28,7 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import imageComp from "../components/ImageCard";
+import { delay } from "../../utils";
 export default {
   components: { imageComp },
   data() {
@@ -48,9 +49,8 @@ export default {
     },
   },
   async created() {
-    // this.photos = await this.$api.photos.getAll();
-    // console.log(JSON.stringify(this.photos));
     this.isloading = true;
+    await delay(500);
     await this.loadPhotos();
     this.isloading = false;
   },
