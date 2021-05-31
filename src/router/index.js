@@ -3,7 +3,7 @@ import GalleryPage from "../pages/GalleryPage.vue"
 import AboutMePage from "../pages/AboutMePage.vue"
 import ImagePage from "../pages/ImagePage.vue"
 export default new VueRouter({
-    mode: 'history',
+    mode: 'hash',
     routes: [
         {
             path: '/',

@@ -10,8 +10,28 @@
       :key="category.category"
       class="category_card"
     >
-      <span class="category-title">Категория{{ category.category }}</span>
-      <div class="gallery">
+      <span class="category-title">Категория {{ category.category }}</span>
+      <v-container>
+        <v-row>
+          <v-col
+            cols="12"
+            v-for="photo in category.photos"
+            :key="photo.id"
+            sm="6"
+            md="2"
+          >
+            <imageComp
+              :url="photo.url"
+              :currentId="currentItem"
+              :id="photo.id"
+              @imagehover="showButton(photo.url)"
+              @imageout="showButton('')"
+            />
+          </v-col>
+        </v-row>
+      </v-container>
+
+      <!-- <div class="gallery">
         <imageComp
           v-for="photo in category.photos"
           :key="photo.id"
@@ -21,7 +41,7 @@
           @imagehover="showButton(photo.url)"
           @imageout="showButton('')"
         />
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -67,11 +87,5 @@ export default {
 .category-title {
   font-size: 1.5em;
   font-weight: bold;
-}
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 2em;
-  margin-top: 1em;
 }
 </style>

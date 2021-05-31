@@ -41,7 +41,8 @@ export default {
 <style scoped>
 .img-container {
   position: relative;
-  width: 100%;
+  flex: 1 0 16.6666666667%;
+  /* max-width: 16.6666666667%; */
 }
 img {
   width: 100%;
