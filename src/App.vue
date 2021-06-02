@@ -8,7 +8,7 @@
 
       <v-toolbar-title class="white--text">Галерeя</v-toolbar-title>
     </v-app-bar>
-    <v-navigation-drawer v-model="drawer" absolute bottom temporary>
+    <v-navigation-drawer v-model="drawer" fixed temporary>
       <v-avatar size="75">
         <img :src="getProfile.photo" alt="John" />
       </v-avatar>
@@ -66,6 +66,7 @@ export default {
   background: #eee;
   color: #2c3e50;
   overflow: hidden;
+  height: 100%;
 }
 header {
   width: 100%;

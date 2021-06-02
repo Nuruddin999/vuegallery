@@ -7,7 +7,43 @@
       color="purple"
       class="mt-16"
     ></v-progress-circular>
-    <div v-else class="picture-wrapper">
+    <v-card v-else :width="width" class="mx-md-auto">
+      <v-container class="mt-16 fill-height">
+        <v-row>
+          <v-col
+            cols="12"
+            sm="12"
+            md="8"
+            align-self="center"
+            order-sm="2"
+            order-md="1"
+            order="1"
+          >
+            <div class="d-flex flex-column align-start">
+              <span><span>Номер:</span> {{ getPhoto.id }}</span>
+              <span
+                ><span>Название:</span> <span></span>{{ getPhoto.title }}</span
+              >
+              <span><span>Сслыка:</span> <span></span>{{ getPhoto.url }}</span>
+              <router-link class="back_btn text-decoration-none mt-5" to="/">
+                <v-btn>Назад</v-btn></router-link
+              >
+            </div>
+          </v-col>
+          <v-col
+            cols="12"
+            sm="12"
+            md="4"
+            order-md="2"
+            order-sm="1"
+            class="fill-heig"
+          >
+            <img :src="getPhoto.url" height="200px" width="200px" />
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-card>
+    <!-- <div v-else class="picture-wrapper">
       <span class="picture_title picture_common"
         ><span class="key">Название:</span> <span></span
         >{{ getPhoto.title }}</span
@@ -22,7 +58,7 @@
       <router-link class="back_btn text-decoration-none" to="/">
         <v-btn>Назад</v-btn></router-link
       >
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
@@ -34,12 +70,23 @@ export default {
       isloading: false,
     };
   },
-
   methods: {
     ...mapActions(["loadPhotoById"]),
   },
   computed: {
     ...mapGetters(["getPhoto"]),
+    width() {
+      return this.$vuetify.breakpoint.name === "xs" ||
+        this.$vuetify.breakpoint.name === "sm"
+        ? "100%"
+        : "calc(50% + 200px) ";
+    },
+    height() {
+      return this.$vuetify.breakpoint.name === "xs" ||
+        this.$vuetify.breakpoint.name === "sm"
+        ? "200px"
+        : "400px";
+    },
   },
   async created() {
     this.isloading = true;
@@ -61,13 +108,10 @@ export default {
   padding: 0.5em;
   background: white;
 }
-img {
-  width: 100%;
-  grid-column: 8/10;
-  grid-row: 1/6;
+
+.row {
   height: 100%;
 }
-
 .key {
   font-weight: bold;
 }
